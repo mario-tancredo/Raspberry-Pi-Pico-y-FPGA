@@ -1,0 +1,22 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+entity test_modulo is
+	port(clk: in std_logic;
+		  IO_SDA_PI,IO_SDA_SLAVE: in std_logic;
+		  IO_SCL_PI,IO_SCL_SLAVE: in std_logic;
+		filas,columnas: out std_logic_vector(7 downto 0));
+end test_modulo;
+
+architecture solucion of test_modulo is
+
+begin
+	
+	EM0 <= IO_SDA_PI & IO_SDA_SLAVE & IO_SCL_PI & IO_SCL_SLAVE;
+	
+	filas  <= "11100111"											
+	columnas <= "00011000";
+											
+end solucion;
