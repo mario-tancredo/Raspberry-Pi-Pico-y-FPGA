@@ -1,0 +1,82 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2012 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 12.0 Build 178 05/31/2012 SJ Full Version
+# Date created = 12:53:58  January 19, 2023
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		Therm_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY Cyclone
+set_global_assignment -name DEVICE EP1C3T144C8
+set_global_assignment -name TOP_LEVEL_ENTITY Thermistor
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 12.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:53:58  JANUARY 19, 2023"
+set_global_assignment -name LAST_QUARTUS_VERSION 12.0
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name VHDL_FILE Thermistor.vhd
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_location_assignment PIN_16 -to clk
+set_location_assignment PIN_75 -to display[7]
+set_location_assignment PIN_74 -to display[6]
+set_location_assignment PIN_73 -to display[5]
+set_location_assignment PIN_72 -to display[4]
+set_location_assignment PIN_71 -to display[3]
+set_location_assignment PIN_70 -to display[2]
+set_location_assignment PIN_69 -to display[1]
+set_location_assignment PIN_68 -to display[0]
+set_location_assignment PIN_85 -to segmentos[7]
+set_location_assignment PIN_84 -to segmentos[6]
+set_location_assignment PIN_83 -to segmentos[5]
+set_location_assignment PIN_82 -to segmentos[4]
+set_location_assignment PIN_79 -to segmentos[3]
+set_location_assignment PIN_78 -to segmentos[2]
+set_location_assignment PIN_77 -to segmentos[1]
+set_location_assignment PIN_76 -to segmentos[0]
+set_location_assignment PIN_60 -to temperatura[0]
+set_location_assignment PIN_59 -to temperatura[1]
+set_location_assignment PIN_58 -to temperatura[2]
+set_location_assignment PIN_57 -to temperatura[3]
+set_location_assignment PIN_56 -to temperatura[4]
+set_location_assignment PIN_55 -to temperatura[5]
+set_location_assignment PIN_54 -to temperatura[6]
+set_location_assignment PIN_53 -to temperatura[7]
+set_location_assignment PIN_52 -to temperatura[8]
+set_location_assignment PIN_51 -to temperatura[9]
+set_location_assignment PIN_50 -to temperatura[10]
+set_location_assignment PIN_49 -to temperatura[11]
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

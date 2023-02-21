@@ -1,0 +1,80 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+entity Thermistor is
+	port(	clk: in std_logic;
+			temperatura: in std_logic_vector(2 downto 0);
+			filas,columnas: out std_logic_vector(7 downto 0);
+			IO_SDA_PI,IO_SDA_SLAVE: in std_logic;
+			IO_SCL_PI,IO_SCL_SLAVE: in std_logic;
+			display: out std_logic_vector(7 downto 0);
+			segmentos: out std_logic_vector(7 downto 0));
+end Thermistor;
+
+architecture solucion of ball is
+	signal EM0,EM1,EM2,EM3,EM4,EM5,EM6,EM7,SM: std_logic_vector(4 downto 0);
+	signal U,D: std_logic_vector(4 downto 0);
+	signal SEL: std_logic_vector(2 downto 0);
+	signal conta_16: std_logic_vector(15 downto 0);
+begin
+	
+	EM0 <= "11111";
+	EM1 <= "11111";
+	EM2 <= "11111";
+	EM3 <= "11111";
+	EM4 <= "01100";
+	EM5 <= "11111";
+	EM6 <= "11111";
+	EM7 <= "11111";
+	
+	process(clk)
+   begin
+		if rising_edge(clk) then
+			conta_16 <= conta_16+1;
+			if conta_16 = 50000 then
+				conta_16 <= (others=>'0');
+				sel <= sel+1;
+			end if;
+		end if;
+	end process;	
+	
+	with sel select SM <= EM0 when "000",
+								 EM1 when "001",
+								 EM2 when "010",
+								 EM3 when "011",
+								 EM4 when "100",
+								 EM5 when "101",
+								 EM6 when "110",
+								 EM7 when others;
+								 
+	with sel select display <= "11111110" when "000",
+								      "11111101" when "001",
+								      "11111011" when "010",
+								      "11110111" when "011",
+								      "11101111" when "100",
+								      "11011111" when "101",
+								      "10111111" when "110",
+								      "01111111" when others;
+ 
+										     --pgfedcba
+	with SM       select segmentos <="11000000" when "00000",
+												"11111001" when "00001",
+												"10100100" when "00010",
+												"10110000" when "00011",
+												"10011001" when "00100",
+												"10010010" when "00101",
+												"10000010" when "00110",
+												"11111000" when "00111",
+												"10000000" when "01000",
+												"10011000" when "01001",
+												"10001000" when "01010",
+												"10000011" when "01011",
+												"11000110" when "01100",
+												"10100001" when "01101",
+												"10000110" when "01110",
+												"10001110" when "01111",
+												"11111111" when others;
+		
+end solucion;

@@ -1,0 +1,12 @@
+Fitter Status : Successful - Tue Feb 21 16:20:38 2023
+Quartus II 64-Bit Version : 12.0 Build 178 05/31/2012 SJ Full Version
+Revision Name : Therm
+Top-level Entity Name : Thermistor
+Family : Cyclone
+Device : EP1C3T144C8
+Timing Models : Final
+Total logic elements : 72 / 2,910 ( 2 % )
+Total pins : 29 / 104 ( 28 % )
+Total virtual pins : 0
+Total memory bits : 0 / 59,904 ( 0 % )
+Total PLLs : 0 / 1 ( 0 % )
