@@ -1,0 +1,34 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+entity volume_bar is
+	port(clk: in std_logic;
+		  boton: in std_logic_vector(3 downto 0);
+		  IO_SDA_PI,IO_SDA_SLAVE: in std_logic;
+		  IO_SCL_PI,IO_SCL_SLAVE: in std_logic;
+		  GP_IO: in std_logic_vector(5 downto 0);
+		  LCD: out std_logic_vector(5 downto 0));
+end volume_bar;
+
+architecture solucion of volume_bar is
+	signal cuenta: std_logic_vector(24 downto 0);
+	signal conta_16: std_logic_vector(15 downto 0);
+	signal conta_20: std_logic_vector(13 downto 0);
+	signal conta_12: std_logic_vector(13 downto 0);
+begin
+	
+	EM0 <= IO_SDA_PI & IO_SDA_SLAVE & IO_SCL_PI & IO_SCL_SLAVE;
+	LCD <= GP_IO;
+	
+	process
+		begin
+			if rising_edge(clk) then
+				conta_12 <= conta_12+1;
+				if conta_12 = 12500 then
+					conta_12 <= (others=>'0');
+				end if;
+			end if;
+		end process;
+end solucion;
