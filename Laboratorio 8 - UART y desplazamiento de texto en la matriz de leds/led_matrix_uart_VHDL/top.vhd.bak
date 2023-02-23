@@ -1,0 +1,44 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity top is
+  generic(clk_freq  :  INTEGER    := 50_000_000;  --frequency of system clock in Hertz
+          baud_rate :  INTEGER    := 9_600;       --data link baud rate in bits/second
+          os_rate   :  INTEGER    := 16;          --oversampling rate to find center of receive bits (in samples per baud period)
+          d_width   :  INTEGER    := 8;           --data bus width
+          parity    :  INTEGER    := 0;           --0 for no parity, 1 for parity
+          parity_eo :  STD_LOGIC  := '0');        --'0' for even, '1' for odd parity
+  port (clk       : in  std_logic; 
+		  filas     : out std_logic_vector(7 downto 0);
+		  columnas  : out std_logic_vector(7 downto 0);
+        rx        : in  STD_LOGIC;                        
+		  mini_leds : out STD_LOGIC_VECTOR(7 DOWNTO 0));
+end top;
+
+architecture str of top is
+  signal rx_data     :  STD_LOGIC_VECTOR(d_width-1 DOWNTO 0);
+  signal rx_d        :  STD_LOGIC_VECTOR(d_width-1 DOWNTO 0);
+begin
+	
+	rx_d <= rx_data;
+	mini_leds <= rx_data;
+	
+	UART : entity work.UART(logic)
+	generic map(clk_freq => clk_freq,
+					baud_rate => baud_rate,
+					os_rate => os_rate,
+					d_width => d_width,
+					parity => parity,
+					parity_eo => parity_eo)
+	port map(clk => clk,
+				rx => rx,
+				rx_data => rx_data);
+	
+	LEDS : entity work.LEDS(logic)
+	port map(clk => clk,
+				filas => filas,
+				columnas => columnas,
+				rx_d => rx_d);
+	
+end architecture;
