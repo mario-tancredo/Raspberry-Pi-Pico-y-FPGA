@@ -1,0 +1,5 @@
+|servo
+servo_in => servo_out.DATAIN
+servo_out <= servo_in.DB_MAX_OUTPUT_PORT_TYPE
+
+
